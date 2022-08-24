@@ -1,0 +1,68 @@
+import React, { createContext } from "react";
+const employeeContext = createContext([
+  {
+    id: 0,
+    name: "sita",
+    fatherName: "Father",
+    phoneNumber: 4343421,
+    address: "xyz",
+    joiningDate: 21 / 32 / 45,
+    designation: "Engineering",
+  },
+  {
+    id: 0,
+    name: "sita",
+    fatherName: "Father",
+    phoneNumber: 4343421,
+    address: "xyz",
+    joiningDate: 21 / 32 / 45,
+    designation: "Engineering",
+  },
+  {
+    id: 0,
+    name: "sita",
+    fatherName: "Father",
+    phoneNumber: 4343421,
+    address: "xyz",
+    joiningDate: 21 / 32 / 45,
+    designation: "Engineering",
+  },
+  {
+    id: 0,
+    name: "sita",
+    fatherName: "Father",
+    phoneNumber: 4343421,
+    address: "xyz",
+    joiningDate: 21 / 32 / 45,
+    designation: "Engineering",
+  },
+  {
+    id: 0,
+    name: "sita",
+    fatherName: "Father",
+    phoneNumber: 4343421,
+    address: "xyz",
+    joiningDate: 21 / 32 / 45,
+    designation: "Engineering",
+  },
+  {
+    id: 1,
+    name: "sita2",
+    fatherName: "Father2",
+    phoneNumber: 43431,
+    address: "xyz",
+    joiningDate: 21 / 32 / 45,
+    designation: "Back-Office",
+  },
+  {
+    id: 2,
+
+    name: "sita3",
+    fatherName: "Fathe3r",
+    phoneNumber: 43421,
+    address: "xyz",
+    joiningDate: 21 / 32 / 45,
+    designation: "Enginnering",
+  },
+]);
+export default employeeContext;

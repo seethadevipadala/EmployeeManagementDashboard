@@ -1,0 +1,31 @@
+.empdiv {
+  background-color: rgb(174, 197, 201);
+  height: 50px;
+  width: 1000px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid rgb(155, 211, 218);
+  box-shadow: 5px;
+  box-shadow: 0px 4px 8px rgb(119, 198, 198);
+}
+.checkbox {
+  padding-right: 90px;
+}
+img{
+    height: 30px;
+    width: 25px;
+}
+.image {
+  padding-right: 90px;
+  padding-top: 20px;
+}
+.name {
+  padding-right: 90px;
+}
+.designation {
+  padding-right: 90px;
+}
+.edit {
+  padding-right: 90px;
+}
