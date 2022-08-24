@@ -5,9 +5,26 @@ import EmployeeList from "./components/employeeList";
 import { useState } from "react";
 import employeeContext from "./context/empContext";
 import { useContext } from "react";
-
+import AddEmpModal from "./components/addEmployeeModal";
+import { Modal, Box } from "@mui/material";
 function App() {
-  const employee=useContext(employeeContext)
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+  const [open, setOpen] = useState(false);
+  const onOpen = () => {
+    setOpen(true);
+  };
+  const onClose = () => setOpen(false);
+  const employee = useContext(employeeContext);
   // const employees = [{
   //   "id":0,
   //   "name": "sita",
@@ -72,68 +89,73 @@ function App() {
   //   "joiningDate": 21 / 32 / 45,
   //   "designation": "Enginnering"
   //   }];
-  console.log(employee)
+  console.log(employee);
   return (
     <>
-     
-        {/* <employeeContext.Consumer> */}
-    <div className="app">
-      <div className="container">
-        <div className="button-div">
-          <h3 className="total">Total:100</h3>
-        </div>
+      <div className="app">
+        <div className="container">
+          <div className="button-div">
+            <h3 className="total">Total:100</h3>
+          </div>
 
-        <div className="button-div">
-          <h3 className="male">Male:30</h3>
-        </div>
+          <div className="button-div">
+            <h3 className="male">Male:30</h3>
+          </div>
 
-        <div className="button-div">
-          <h3 className="female">Female:70</h3>
-        </div>
+          <div className="button-div">
+            <h3 className="female">Female:70</h3>
+          </div>
 
-        <div className="button-div">
-          <h3 className="engineering">Engineering:35</h3>
-        </div>
+          <div className="button-div">
+            <h3 className="engineering">Engineering:35</h3>
+          </div>
 
-        <div className="button-div">
-          <h3 className="backoffice">BackOffice:65</h3>
+          <div className="button-div">
+            <h3 className="backoffice">BackOffice:65</h3>
+          </div>
         </div>
-      </div>
-      <div className="adddiv">
-        <div className="add">
-          <button className="addbutton">
-            <h3>Add Employee</h3>
-          </button>
-          <div className="emplist">
-            <div className="deldiv">
-              <div>
-                <input
-                  className="search"
-                  type="text"
-                  placeholder="Search.."
-                ></input>
+        <div className="adddiv">
+          <div className="add">
+            {/* <button onClick={onOpen}>hee</button> */}
+            <button className="addbutton" onClick={onOpen}>
+              <h3>Add Employee</h3>
+            </button>
+            <Modal
+              keepMounted
+              open={open}
+              onClose={onClose}
+              aria-labelledby="keep-mounted-modal-title"
+              aria-describedby="keep-mounted-modal-description"
+            >
+              <Box sx={style}></Box>
+            </Modal>
+            <div className="emplist">
+              <div className="deldiv">
+                <div>
+                  <input
+                    className="search"
+                    type="text"
+                    placeholder="Search.."
+                  ></input>
+                </div>
+                <div>
+                  <button className="delbutton">
+                    <h3>Delete</h3>
+                  </button>
+                </div>
+                <div>
+                  <button className="delallbutton">
+                    <h3>Delete all</h3>
+                  </button>
+                </div>
               </div>
-              <div>
-                <button className="delbutton">
-                  <h3>Delete</h3>
-                </button>
-              </div>
-              <div>
-                <button className="delallbutton">
-                  <h3>Delete all</h3>
-                </button>
-              </div>
+
+              <EmployeeList emp={employee} />
             </div>
-               
-            <EmployeeList emp={employee} />
-  
           </div>
         </div>
       </div>
-          </div>
-          {/* </employeeContext.Consumer> */}
-   
-        </>
+    </>
   );
 }
 
