@@ -1,4 +1,3 @@
-
 import "./empDashboard.css";
 import React from "react";
 import EmployeeList from "./../components/employeeList";
@@ -6,7 +5,11 @@ import { useState } from "react";
 import employeeContext from "./../context/empContext";
 import { useContext } from "react";
 import { Modal, Box } from "@mui/material";
-function App() {
+function EmpDashboard() {
+  const arr = [];
+  const delHandler = (arr) => {
+    console.log(arr);
+  };
   const style = {
     position: "absolute",
     top: "50%",
@@ -24,71 +27,6 @@ function App() {
   };
   const onClose = () => setOpen(false);
   const employee = useContext(employeeContext);
-  // const employees = [{
-  //   "id":0,
-  //   "name": "sita",
-  //   "fatherName": "Father",
-  //   "phoneNumber": 4343421,
-  //   "address": "xyz",
-  //   "joiningDate": 21 / 32 / 45,
-  //   "designation": "Engineering"
-  // },
-  // {
-  //   "id":0,
-  //   "name": "sita",
-  //   "fatherName": "Father",
-  //   "phoneNumber": 4343421,
-  //   "address": "xyz",
-  //   "joiningDate": 21 / 32 / 45,
-  //   "designation": "Engineering"
-  //   },
-  //   {
-  //     "id":0,
-  //     "name": "sita",
-  //     "fatherName": "Father",
-  //     "phoneNumber": 4343421,
-  //     "address": "xyz",
-  //     "joiningDate": 21 / 32 / 45,
-  //     "designation": "Engineering"
-  //   },
-  //   {
-  //     "id":0,
-  //     "name": "sita",
-  //     "fatherName": "Father",
-  //     "phoneNumber": 4343421,
-  //     "address": "xyz",
-  //     "joiningDate": 21 / 32 / 45,
-  //     "designation": "Engineering"
-  //   },
-  // {
-  //   "id":0,
-  //   "name": "sita",
-  //   "fatherName": "Father",
-  //   "phoneNumber": 4343421,
-  //   "address": "xyz",
-  //   "joiningDate": 21 / 32 / 45,
-  //   "designation": "Engineering"
-  // },
-  //   {
-  //   "id":1,
-  //   "name": "sita2",
-  //   "fatherName": "Father2",
-  //   "phoneNumber": 43431,
-  //   "address": "xyz",
-  //   "joiningDate": 21 / 32 / 45,
-  //   "designation": "Back-Office"
-  // },
-  //   {
-  //     "id":2,
-
-  //   "name": "sita3",
-  //   "fatherName": "Fathe3r",
-  //   "phoneNumber": 43421,
-  //   "address": "xyz",
-  //   "joiningDate": 21 / 32 / 45,
-  //   "designation": "Enginnering"
-  //   }];
-  console.log(employee);
   return (
     <>
       <div className="app">
@@ -138,7 +76,7 @@ function App() {
                   ></input>
                 </div>
                 <div>
-                  <button className="delbutton">
+                  <button className="delbutton" onClick={delHandler}>
                     <h3>Delete</h3>
                   </button>
                 </div>
@@ -149,7 +87,7 @@ function App() {
                 </div>
               </div>
 
-              <EmployeeList emp={employee} />
+              <EmployeeList emp={employee} onClick={delHandler([])} />
             </div>
           </div>
         </div>
@@ -158,4 +96,4 @@ function App() {
   );
 }
 
-export default App;
+export default EmpDashboard;

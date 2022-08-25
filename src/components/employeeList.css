@@ -10,15 +10,24 @@
   box-shadow: 0px 4px 8px rgb(119, 198, 198);
   margin-top: 5px;
   padding-top: 20px;
- 
 }
 
 .checkbox {
   padding-right: 30px;
+  padding-left: 10px;
 }
-img{
-    height: 30px;
-    width: 25px;
+.checkBox{
+  height: 17px;
+  width: 17px;
+}
+.profile {
+  height: 25px;
+  width: 25px;
+  border-radius: 30px;
+}
+.editimg {
+  height: 20px;
+  width: 20px;
 }
 .image {
   padding-right: 20px;
@@ -27,17 +36,17 @@ img{
 .name {
   padding-right: 190px;
   height: 40px;
-  width:70px;
+  width: 70px;
   display: flex;
   flex-direction: column;
 }
 .designation {
   /* padding-right: 50px; */
   height: 40px;
-  width:70px;
+  width: 70px;
 }
 .edit {
-  padding-left:550px;
+  padding-left: 550px;
   height: 40px;
-  width:70px;
+  width: 70px;
 }
