@@ -1,15 +1,11 @@
+import React, { useState, useContext } from "react";
+
 import "./empDashboard.css";
-import React from "react";
 import EmployeeList from "./../components/employeeList";
-import { useState } from "react";
 import employeeContext from "./../context/empContext";
-import { useContext } from "react";
+
 import { Modal, Box } from "@mui/material";
 function EmpDashboard() {
-  const arr = [];
-  const delHandler = (arr) => {
-    console.log(arr);
-  };
   const style = {
     position: "absolute",
     top: "50%",
@@ -26,7 +22,36 @@ function EmpDashboard() {
     setOpen(true);
   };
   const onClose = () => setOpen(false);
-  const employee = useContext(employeeContext);
+  const employees = useContext(employeeContext);
+  const [employeeList, setEmployeeList] = useState(employees);
+
+  const [selectedEmpIds, setSelectedEmpIds] = useState([]);
+  let checkBoxTick = [];
+
+  const onSelectEmployee = (event, id) => {
+    if (event.target.checked) {
+      selectedEmpIds.push(id);
+
+      checkBoxTick.push(event);
+    }
+  };
+
+  const onDeleteEmployee = () => {
+    const newEmployees = employees.filter((employee) => {
+      return !selectedEmpIds.some((selectedId) => {
+        if (selectedId === employee.id) {
+          return employee;
+        }
+      });
+    });
+
+    setEmployeeList(newEmployees);
+
+    for (let tick of checkBoxTick) {
+      tick.target.checked = false;
+    }
+  };
+
   return (
     <>
       <div className="app">
@@ -53,7 +78,6 @@ function EmpDashboard() {
         </div>
         <div className="adddiv">
           <div className="add">
-            {/* <button onClick={onOpen}>hee</button> */}
             <button className="addbutton" onClick={onOpen}>
               <h3>Add Employee</h3>
             </button>
@@ -76,7 +100,7 @@ function EmpDashboard() {
                   ></input>
                 </div>
                 <div>
-                  <button className="delbutton" onClick={delHandler}>
+                  <button className="delbutton" onClick={onDeleteEmployee}>
                     <h3>Delete</h3>
                   </button>
                 </div>
@@ -87,7 +111,10 @@ function EmpDashboard() {
                 </div>
               </div>
 
-              <EmployeeList emp={employee} onClick={delHandler([])} />
+              <EmployeeList
+                employeeList={employeeList}
+                onSelectEmployee={onSelectEmployee}
+              />
             </div>
           </div>
         </div>
