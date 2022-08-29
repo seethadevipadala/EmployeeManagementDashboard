@@ -5,7 +5,7 @@ import EmployeeList from "./../components/employeeList";
 import employeeContext from "./../context/empContext";
 
 import { Modal, Box } from "@mui/material";
-function EmpDashboard() {
+function EmpDashboard(props) {
   const style = {
     position: "absolute",
     top: "50%",
@@ -24,7 +24,6 @@ function EmpDashboard() {
   const onClose = () => setOpen(false);
   const employees = useContext(employeeContext);
   const [employeeList, setEmployeeList] = useState(employees);
-
   const [selectedEmpIds, setSelectedEmpIds] = useState([]);
   let checkBoxTick = [];
 
@@ -50,6 +49,7 @@ function EmpDashboard() {
     for (let tick of checkBoxTick) {
       tick.target.checked = false;
     }
+    props.updateEmployee(newEmployees);
   };
 
   return (

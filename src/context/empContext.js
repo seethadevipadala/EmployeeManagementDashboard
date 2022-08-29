@@ -1,5 +1,8 @@
 import React, { createContext } from "react";
-const employeeContext = createContext([
+const employeeContext = createContext();
+export default employeeContext;
+
+export const employeeData = [
   {
     id: 0,
     name: "John",
@@ -50,5 +53,4 @@ const employeeContext = createContext([
     joiningDate: 21 / 32 / 45,
     designation: "Enginnering",
   },
-]);
-export default employeeContext;
+];
