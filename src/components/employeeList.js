@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./employeeList.css";
-import pic from "./../asserts/pic.webp";
-import editpic from "./../asserts/edit pic.png";
-const EmployeeList = ({employeeList,onSelectEmployee}) => {
+import pic from "../asserts/pic.webp";
+import editpic from "../asserts/edit pic.png";
+const EmployeeList = ({ employeeList, onSelectEmployee }) => {
   const handleChange = (event, employeeId) => {
     onSelectEmployee(event, employeeId);
   };
