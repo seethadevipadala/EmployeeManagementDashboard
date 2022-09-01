@@ -5,6 +5,7 @@ import empContext, { employeeData } from "./context/empContext";
 function App() {
   const [updateEmployeeData, setupdateEmployeeData] = useState(employeeData);
   const updateEmployee = (employee) => {
+    console.log(employee);
     setupdateEmployeeData(employee);
     return employee;
   };

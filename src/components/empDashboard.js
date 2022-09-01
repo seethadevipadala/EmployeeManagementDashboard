@@ -3,49 +3,52 @@ import React, { useState, useContext } from "react";
 import "./empDashboard.css";
 import EmployeeList from "./../components/employeeList";
 import employeeContext from "./../context/empContext";
-
-import { Modal, Box } from "@mui/material";
+import AddEmployeeModal from "./addEmployeeModal";
+import AddEmployeeForm from "./addEmployeeForm";
 function EmpDashboard(props) {
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
   const [open, setOpen] = useState(false);
-  const onOpen = () => {
+
+  const openModal = () => {
+    setOpen("opened");
     setOpen(true);
   };
-  const onClose = () => setOpen(false);
+  const closeModal = () => {
+    // console.log("closed");
+    setOpen(false);
+  };
+
+ 
   const employees = useContext(employeeContext);
   const [employeeList, setEmployeeList] = useState(employees);
   const [selectedEmpIds, setSelectedEmpIds] = useState([]);
-  let checkBoxTick = [];
+  const [updateEmployee,setUpdateEmployee]=useState()
 
+  let checkBoxTick = [];
+  const getEmployeeData = (data) => {
+    // console.log(data);
+    // console.log([...employees, data]);
+    setEmployeeList([...employeeList, data]);
+
+
+  };
   const onSelectEmployee = (event, id) => {
     if (event.target.checked) {
       selectedEmpIds.push(id);
-
       checkBoxTick.push(event);
     }
   };
 
   const onDeleteEmployee = () => {
-    const newEmployees = employees.filter((employee) => {
+    console.log("onDeleteEmployee", employeeList)
+    const newEmployees = employeeList.filter((employee) => {
       return !selectedEmpIds.some((selectedId) => {
         if (selectedId === employee.id) {
           return employee;
         }
       });
     });
-
     setEmployeeList(newEmployees);
-
+    
     for (let tick of checkBoxTick) {
       tick.target.checked = false;
     }
@@ -78,18 +81,17 @@ function EmpDashboard(props) {
         </div>
         <div className="adddiv">
           <div className="add">
-            <button className="addbutton" onClick={onOpen}>
+            <button className="addbutton" onClick={openModal}>
               <h3>Add Employee</h3>
             </button>
-            <Modal
-              keepMounted
-              open={open}
-              onClose={onClose}
-              aria-labelledby="keep-mounted-modal-title"
-              aria-describedby="keep-mounted-modal-description"
-            >
-              <Box sx={style}></Box>
-            </Modal>
+
+            {
+              <AddEmployeeModal
+                open={open}
+                close={closeModal}
+                getEmployeeData={getEmployeeData}
+              ></AddEmployeeModal>
+            }
             <div className="emplist">
               <div className="deldiv">
                 <div>

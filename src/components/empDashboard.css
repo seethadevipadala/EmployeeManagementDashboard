@@ -135,18 +135,17 @@
     height: 1000px;
     width: auto;
   }
-  .add {
-    /* padding: 2px; */
-  }
+
   .addbutton {
     background-color: rgb(192, 222, 222);
     color: black;
     border-radius: 15px;
-    padding: 1px;
-    /* padding-bottom: 2px; */
+   
+     padding-bottom: 2px;
   
-    margin-top: 4px;
-    margin-left: 1210px;
+    margin-top: 1px;
+    margin-left: 1110px; 
+    
     border: 2px rgb(22, 179, 236) solid;
     box-shadow: 0px 4px 8px rgb(119, 198, 198) inset;
   }
@@ -166,19 +165,19 @@
   .deldiv {
     display: flex;
     padding-left: 200px;
-    /* margin-top: 4px; */
+    margin-top: 4px;
   }
   
   .search {
     height: 30px;
     width: 250px;
     background-color: rgb(192, 222, 222);
-    /* padding: 20px; */
-    padding-left: 17px;
+     /* padding: 20px;  */
+     padding-left: 17px;
     padding-right: 17px;
-    padding-bottom: 20px;
+    padding-bottom: 20px; 
     border-radius: 10px;
-    margin-left: 10px;
+   
   
     /* margin-left: 1240px; */
     border: 2px rgb(22, 179, 236) solid;
@@ -188,13 +187,13 @@
     background-color: rgb(192, 222, 222);
     color: black;
     border-radius: 15px;
-    /* padding: 3px; */
-    padding-left: 17px;
+    padding: 3px; 
+     padding-left: 17px;
     padding-right: 17px;
   
     margin-left: 100px;
   
-    margin-top: 0px;
+    margin-top: 0px; 
     /* margin-left: 1240px; */
     border: 2px rgb(22, 179, 236) solid;
     box-shadow: 0px 4px 8px rgb(119, 198, 198) inset;
@@ -206,10 +205,10 @@
     padding-left: 17px;
     padding-right: 17px;
   
-    /* padding-bottom: 2px; */
+    padding-bottom: 2px;
     margin-left: 100px;
   
-    margin-bottom: 6px;
+    margin-bottom: 6px; 
     /* margin-left: 1240px; */
     border: 2px rgb(22, 179, 236) solid;
     box-shadow: 0px 4px 8px rgb(119, 198, 198) inset;

@@ -4,7 +4,9 @@ import pic from "../asserts/pic.webp";
 import editpic from "../asserts/edit_pic.png";
 const EmployeeList = ({ employeeList, onSelectEmployee }) => {
   const handleChange = (event, employeeId) => {
+    // console.log(employeeId);
     onSelectEmployee(event, employeeId);
+
   };
 
   return (
