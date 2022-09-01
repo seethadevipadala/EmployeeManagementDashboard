@@ -31,6 +31,7 @@ const AddEmployeeModal = (props) => {
     event.preventDefault();
     // console.log(formData);
     props.getEmployeeData(formData);
+    props.close();
     return formData;
   };
 
@@ -46,10 +47,14 @@ const AddEmployeeModal = (props) => {
               <div className="form-fields">
                 <h2>Add Employee</h2>
                 <div className="firstrow">
-                  <div className="fathername">
+                <div className="fullname">
                     <label>Name:</label>
                     <br />
-                    <input type="text" onChange={handleChange} name="name" />
+                    <input
+                      type="text"
+                      onChange={handleChange}
+                      name="fathername"
+                    />
                   </div>
                   <div className="fathername">
                     <label>Father/Gaurdian:</label>
@@ -73,15 +78,7 @@ const AddEmployeeModal = (props) => {
                     <br />
                     <input type="text" onChange={handleChange} name="email" />
                   </div>
-                  <div className="joiningdate">
-                    <label>Joining date:</label>
-                    <br />
-                    <input
-                      type="date"
-                      onChange={handleChange}
-                      name="joiningdate"
-                    />
-                  </div>
+                  
                   <div className="joiningdate">
                     <label>Designation:</label>
                     <br />
@@ -100,7 +97,19 @@ const AddEmployeeModal = (props) => {
                       name="id"
                     />
                   </div>
-                  <div className="id">
+                  
+                </div>
+                <div className="thirdrow">
+                <div className="joiningdate">
+                    <label>Joining date:</label>
+                    <br />
+                    <input
+                      type="date"
+                      onChange={handleChange}
+                      name="joiningdate"
+                    />
+                  </div>
+                  <div className="address">
                     <label>Address:</label>
                     <br />
                     <input
@@ -110,7 +119,7 @@ const AddEmployeeModal = (props) => {
                     />
                   </div>
                 </div>
-                <button className="button" type="submit">
+                <button className="button" type="submit" >
                   Add
                 </button>
               </div>

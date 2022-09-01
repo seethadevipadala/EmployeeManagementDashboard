@@ -21,7 +21,7 @@ function EmpDashboard(props) {
   const employees = useContext(employeeContext);
   const [employeeList, setEmployeeList] = useState(employees);
   const [selectedEmpIds, setSelectedEmpIds] = useState([]);
-  const [updateEmployee,setUpdateEmployee]=useState()
+  const [updateEmployee, setUpdateEmployee] = useState();
 
   let checkBoxTick = [];
   const getEmployeeData = (data) => {
