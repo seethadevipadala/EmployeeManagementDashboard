@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import "./addEmployeeModal.css";
 const AddEmployeeModal = (props) => {
   const [formData, setFormData] = useState({
-    id:'',
+    id: "",
     name: "",
+    gender: "",
     phone: "",
-    address:"",
     joiningdate: "",
     designation: "",
-    // fathername: "",
-    // email: ""
-   
   });
-
+  const handleChangeselect = (e) => {
+    // console.log(e.target.value);
+    formData.designation = e.target.value;
+  };
+  const handleChangeradio = (e) => {
+    formData.gender = e.target.defaultValue;
+  };
   const handleChange = (event) => {
     // console.log(event.target.name, ":", event.target.value);
     const name = event.target.name;
@@ -25,11 +28,10 @@ const AddEmployeeModal = (props) => {
       };
     });
   };
-  // console.log(formData);
 
   const submitHandle = (event) => {
     event.preventDefault();
-    // console.log(formData);
+
     props.getEmployeeData(formData);
     props.close();
     return formData;
@@ -47,14 +49,28 @@ const AddEmployeeModal = (props) => {
               <div className="form-fields">
                 <h2>Add Employee</h2>
                 <div className="firstrow">
-                <div className="fullname">
+                  <div className="fullname">
                     <label>Name:</label>
                     <br />
+                    <input type="text" onChange={handleChange} name="name" />
+                  </div>
+                  <div className="gender">
+                    <label>Gender:</label>
+                    <br />
                     <input
-                      type="text"
-                      onChange={handleChange}
-                      name="fathername"
+                      type="radio"
+                      onChange={handleChangeradio}
+                      name="gender"
+                      value="male"
                     />
+                    <label>Male</label>
+                    <input
+                      type="radio"
+                      onChange={handleChangeradio}
+                      name="gender"
+                      value="famale"
+                    />
+                    <label>Female</label>
                   </div>
                   <div className="fathername">
                     <label>Father/Gaurdian:</label>
@@ -65,42 +81,35 @@ const AddEmployeeModal = (props) => {
                       name="fathername"
                     />
                   </div>
+                </div>
+
+                <div className="secondrow">
                   <div className="phone">
                     <label>Pnone number:</label>
                     <br />
                     <input type="phone" onChange={handleChange} name="phone" />
                   </div>
-                </div>
-
-                <div className="secondrow">
                   <div className="email">
                     <label>Email :</label>
                     <br />
                     <input type="text" onChange={handleChange} name="email" />
                   </div>
-                  
+
                   <div className="joiningdate">
                     <label>Designation:</label>
                     <br />
-                    <input
-                      type="test"
-                      onChange={handleChange}
-                      name="designation"
-                    />
+                    <select name="designation" onChange={handleChangeselect}>
+                      <option value="Engineering" name="designation">
+                        Engnnering
+                      </option>
+                      <option value="Backoffice" name="designation">
+                        Back office
+                      </option>
+                    </select>
                   </div>
-                  <div className="id">
-                    <label>Id:</label>
-                    <br />
-                    <input
-                      type="test"
-                      onChange={handleChange}
-                      name="id"
-                    />
-                  </div>
-                  
                 </div>
                 <div className="thirdrow">
-                <div className="joiningdate">
+                  <div className="joiningdate">
                     <label>Joining date:</label>
                     <br />
                     <input
@@ -109,17 +118,13 @@ const AddEmployeeModal = (props) => {
                       name="joiningdate"
                     />
                   </div>
-                  <div className="address">
-                    <label>Address:</label>
+                  <div className="id">
+                    <label>Id:</label>
                     <br />
-                    <input
-                      type="test"
-                      onChange={handleChange}
-                      name="address"
-                    />
+                    <input type="test" onChange={handleChange} name="id" />
                   </div>
                 </div>
-                <button className="button" type="submit" >
+                <button className="button" type="submit">
                   Add
                 </button>
               </div>

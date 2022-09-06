@@ -2,18 +2,24 @@ import React, { useState } from "react";
 import "./employeeList.css";
 import pic from "../asserts/pic.webp";
 import editpic from "../asserts/edit_pic.png";
-const EmployeeList = ({ employeeList, onSelectEmployee }) => {
+const EmployeeList = ({ employeeList, onSelectEmployee, selectedEmpIds }) => {
+  // const [checked, setChecked] = useState(false);
   const handleChange = (event, employeeId) => {
+    // console.log(selectedEmpIds);
+    // console.log("isChecked", selectedEmpIds.includes(employeeId));
+    // console.log("isChecked1", event.target.checked);
     // console.log(employeeId);
+
     onSelectEmployee(event, employeeId);
-
   };
-
+  
   return (
     <>
-      <ul>
-        {employeeList.map((_emp, i) => (
+    <ul>
+        {employeeList.length > 0 ?
+          employeeList.map((_emp, i) => (
           <>
+
             <div className="empdiv">
               <div className="checkbox">
                 <input
@@ -23,6 +29,7 @@ const EmployeeList = ({ employeeList, onSelectEmployee }) => {
                     handleChange(event, _emp.id);
                   }}
                   value={i}
+                  checked={selectedEmpIds.includes(_emp.id)}
                 />
               </div>
               <div className="image">
@@ -38,7 +45,7 @@ const EmployeeList = ({ employeeList, onSelectEmployee }) => {
               </div>
             </div>
           </>
-        ))}
+        ) ):<h3 className="nodata"> No Employee data</h3>}
       </ul>
     </>
   );
