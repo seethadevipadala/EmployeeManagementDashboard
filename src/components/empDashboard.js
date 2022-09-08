@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-
+import { Link, Route } from "react-router-dom";
 import "./empDashboard.css";
 import EmployeeList from "./../components/employeeList";
 import employeeContext from "./../context/empContext";
@@ -115,9 +115,9 @@ function EmpDashboard(props) {
         <div className="adddiv">
           <div className="add">
             <button className="addbutton" onClick={openModal} >
-              <h3>Add Employee</h3>
+              <h3>Add Employee </h3>
+              {/* <Route path="/emp" element={<AddEmployeeModal/>}></Route> */}
             </button>
-
             {
               <AddEmployeeModal
                 open={open}
