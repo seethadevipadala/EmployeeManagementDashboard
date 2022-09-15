@@ -31,18 +31,18 @@ const AddEmployeeModal = (props) => {
 
   const submitHandle = (event) => {
     event.preventDefault();
-
+    console.log(props.open);
     props.getEmployeeData(formData);
     props.close();
     return formData;
   };
-
+ 
   return (
     <>
       {props.open && (
         <div className="backshadow">
           <div className="modal">
-            <div className="close-button" onClick={props.close}>
+            <div className="close-button">
               <button onClick={props.close}>×</button>
             </div>
             <form onSubmit={submitHandle}>

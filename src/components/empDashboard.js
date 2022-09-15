@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link,Route} from 'react-router-dom';
 import "./empDashboard.css";
 import EmployeeList from "./../components/employeeList";
-import employeeContext from "./../context/empContext";
+import employeeContext from "../context/employeeContext";
 import AddEmployeeModal from "./addEmployeeModal";
 function EmpDashboard(props) {
   const [confirmdeleteAllModal, setConfirmDeleteAllModal] = useState(false);
@@ -28,7 +28,10 @@ function EmpDashboard(props) {
     setOpen(true);
   };
   const closeModal = () => {
+    console.log(open);
+    console.log("closed")
     setOpen(false);
+    console.log(open);
   };
 
   var male = 0,
@@ -48,7 +51,7 @@ function EmpDashboard(props) {
     if (!isChecked) {
       setSelectedEmpIds([...selectedEmpIds, id]);
     } else {
-      console.log("checked")
+      console.log("checked");
       const _selectedEmployeeIds = selectedEmpIds.filter(
         (selectedEmployeeId) => {
           return selectedEmployeeId != id;
@@ -68,7 +71,7 @@ function EmpDashboard(props) {
     });
 
     setEmployeeList(newEmployees);
-    
+
     closeConfirmDeleteModal();
   };
 
@@ -114,17 +117,24 @@ function EmpDashboard(props) {
         </div>
         <div className="adddiv">
           <div className="add">
-            <button className="addbutton" onClick={openModal} >
-              <h3>Add Employee </h3>
-              {/* <Route path="/emp" element={<AddEmployeeModal/>}></Route> */}
+            <button className="addbutton" onClick={openModal}>
+            {/* <h3>Add Employee </h3> */}
+            <Link to="/addemp">Add Employee</Link>
+            <Route path="/addemp">
+                {open && <AddEmployeeModal
+                  open={open}
+                  close={closeModal}
+                  getEmployeeData={getEmployeeData}
+                ></AddEmployeeModal>}
+            </Route>
             </button>
-            {
+            {/* {
               <AddEmployeeModal
                 open={open}
                 close={closeModal}
                 getEmployeeData={getEmployeeData}
               ></AddEmployeeModal>
-            }
+            } */}
             <div className="emplist">
               <div className="deldiv">
                 <div>
@@ -135,7 +145,7 @@ function EmpDashboard(props) {
                   ></input>
                 </div>
                 <div>
-                <button
+                  <button
                     name="button"
                     disabled={!selectedEmpIds.length}
                     id="button"
@@ -192,11 +202,13 @@ function EmpDashboard(props) {
                 </div>
               </div>
 
-              {<EmployeeList
-                employeeList={employeeList}
-                onSelectEmployee={onSelectEmployee}
-                selectedEmpIds={selectedEmpIds}
-              />}
+              {
+                <EmployeeList
+                  employeeList={employeeList}
+                  onSelectEmployee={onSelectEmployee}
+                  selectedEmpIds={selectedEmpIds}
+                />
+              }
             </div>
           </div>
         </div>
