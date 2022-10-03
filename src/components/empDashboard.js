@@ -14,7 +14,7 @@ function EmpDashboard() {
     setConfirmDeleteAllModal(false);
   };
 
-  const [confirmdeleteModal, setConfirmDeleteModal] = useState(false);
+  const [confirmDeleteModal, setConfirmDeleteModal] = useState(false);
   const openConfirmDeleteModal = () => {
     setConfirmDeleteModal(true);
   };
@@ -141,7 +141,7 @@ function EmpDashboard() {
                   >
                     <h3>Delete</h3>
                   </button>
-                  {confirmdeleteModal && (
+                  {confirmDeleteModal && (
                     <div className="backshadow">
                       <div className="modal">
                         <h1>Delete</h1>
