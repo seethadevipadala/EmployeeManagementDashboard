@@ -5,14 +5,13 @@ import empContext, { employeeData } from "./context/employeeContext";
 function App() {
   const [employees, setEmployeeList] = useState(employeeData);
   const updateEmployees = (employee) => {
-    console.log(employee);
     setEmployeeList(employee);
     return employee;
   };
 
   return (
-    <empContext.Provider value={{employees, updateEmployees}}>
-      <EmpDashboard/>
+    <empContext.Provider value={{ employees, updateEmployees }}>
+      <EmpDashboard />
     </empContext.Provider>
   );
 }

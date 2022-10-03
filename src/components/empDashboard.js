@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
-import { Link,Route} from 'react-router-dom';
+import { Link, Route } from "react-router-dom";
 import "./empDashboard.css";
 import EmployeeList from "./../components/employeeList";
 import employeeContext from "../context/employeeContext";
 import AddEmployeeModal from "./addEmployeeModal";
-function EmpDashboard(props) {
+function EmpDashboard() {
   const [confirmdeleteAllModal, setConfirmDeleteAllModal] = useState(false);
   const openConfirmDeleteAllModal = () => {
     setConfirmDeleteAllModal(true);
   };
-  
+
   const closeConfirmDeleteAllModal = () => {
     setConfirmDeleteAllModal(false);
   };
@@ -28,35 +28,27 @@ function EmpDashboard(props) {
     setOpen(true);
   };
   const closeModal = () => {
-    console.log(open);
-    console.log("closed")
     setOpen(false);
-    console.log(open);
   };
 
-  var male = 0,
+  let male = 0,
     female = 0,
     engineering = 0,
     backoffice = 0;
 
-  const {employees, updateEmployees} = useContext(employeeContext);
-  const [employeeList, setEmployeeList] = useState(employees);
+  const { employees, updateEmployees } = useContext(employeeContext);
   const [selectedEmpIds, setSelectedEmpIds] = useState([]);
-  let checkBoxTick = [];
   const getEmployeeData = (data) => {
-    setEmployeeList([...employeeList, data]);
-    updateEmployees([...employeeList, data]);
-
+    updateEmployees([...employees, data]);
   };
   const onSelectEmployee = (event, id) => {
     const isChecked = selectedEmpIds.includes(id);
     if (!isChecked) {
       setSelectedEmpIds([...selectedEmpIds, id]);
     } else {
-      console.log("checked");
       const _selectedEmployeeIds = selectedEmpIds.filter(
         (selectedEmployeeId) => {
-          return selectedEmployeeId != id;
+          return selectedEmployeeId !== id;
         }
       );
       setSelectedEmpIds(_selectedEmployeeIds);
@@ -64,32 +56,28 @@ function EmpDashboard(props) {
   };
 
   const onDeleteEmployee = () => {
-    const newEmployees = employeeList.filter((employee) => {
+    const newEmployees = employees.filter((employee) => {
       return !selectedEmpIds.some((selectedId) => {
         if (selectedId === employee.id) {
           return employee;
         }
       });
     });
-
-    setEmployeeList(newEmployees);
     updateEmployees(newEmployees);
     closeConfirmDeleteModal();
   };
 
   const onDeleteAllEmployee = () => {
-    setEmployeeList([]);
+    updateEmployees([]);
     closeConfirmDeleteAllModal();
-    // props.updateEmployee([]);
-
   };
 
-  employeeList.map((el) => {
+  employees.map((el) => {
     if (el.gender === "male") {
       male++;
     } else female++;
   });
-  employeeList.map((el) => {
+  employees.map((el) => {
     if (el.designation === "Engineering") {
       engineering++;
     } else backoffice++;
@@ -100,7 +88,7 @@ function EmpDashboard(props) {
       <div className="app">
         <div className="container">
           <div className="button-div">
-            <h3 className="total">Total : {employeeList.length}</h3>
+            <h3 className="total">Total : {employees.length}</h3>
           </div>
 
           <div className="button-div">
@@ -122,23 +110,18 @@ function EmpDashboard(props) {
         <div className="adddiv">
           <div className="add">
             <button className="addbutton" onClick={openModal}>
-            {/* <h3>Add Employee </h3> */}
-            <Link to="/addemp">Add Employee</Link>
-            <Route path="/addemp">
-                {open && <AddEmployeeModal
-                  open={open}
-                  close={closeModal}
-                  getEmployeeData={getEmployeeData}
-                ></AddEmployeeModal>}
-            </Route>
+              <Link to="/addemp">Add Employee</Link>
+              <Route path="/addemp">
+                {open && (
+                  <AddEmployeeModal
+                    open={open}
+                    close={closeModal}
+                    getEmployeeData={getEmployeeData}
+                  ></AddEmployeeModal>
+                )}
+              </Route>
             </button>
-            {/* {
-              <AddEmployeeModal
-                open={open}
-                close={closeModal}
-                getEmployeeData={getEmployeeData}
-              ></AddEmployeeModal>
-            } */}
+
             <div className="emplist">
               <div className="deldiv">
                 <div>
@@ -208,7 +191,7 @@ function EmpDashboard(props) {
 
               {
                 <EmployeeList
-                  employeeList={employeeList}
+                  employeeList={employees}
                   onSelectEmployee={onSelectEmployee}
                   selectedEmpIds={selectedEmpIds}
                 />

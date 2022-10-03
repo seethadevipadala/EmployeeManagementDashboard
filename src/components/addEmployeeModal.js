@@ -10,14 +10,12 @@ const AddEmployeeModal = (props) => {
     designation: "",
   });
   const handleChangeselect = (e) => {
-    // console.log(e.target.value);
     formData.designation = e.target.value;
   };
   const handleChangeradio = (e) => {
     formData.gender = e.target.defaultValue;
   };
   const handleChange = (event) => {
-    // console.log(event.target.name, ":", event.target.value);
     const name = event.target.name;
     const value = event.target.value;
 
@@ -31,12 +29,11 @@ const AddEmployeeModal = (props) => {
 
   const submitHandle = (event) => {
     event.preventDefault();
-    console.log(props.open);
     props.getEmployeeData(formData);
     props.close();
     return formData;
   };
- 
+
   return (
     <>
       {props.open && (
