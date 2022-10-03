@@ -9,7 +9,7 @@ function EmpDashboard(props) {
   const openConfirmDeleteAllModal = () => {
     setConfirmDeleteAllModal(true);
   };
-
+  
   const closeConfirmDeleteAllModal = () => {
     setConfirmDeleteAllModal(false);
   };
@@ -39,12 +39,14 @@ function EmpDashboard(props) {
     engineering = 0,
     backoffice = 0;
 
-  const employees = useContext(employeeContext);
+  const {employees, updateEmployees} = useContext(employeeContext);
   const [employeeList, setEmployeeList] = useState(employees);
   const [selectedEmpIds, setSelectedEmpIds] = useState([]);
   let checkBoxTick = [];
   const getEmployeeData = (data) => {
     setEmployeeList([...employeeList, data]);
+    updateEmployees([...employeeList, data]);
+
   };
   const onSelectEmployee = (event, id) => {
     const isChecked = selectedEmpIds.includes(id);
@@ -71,13 +73,15 @@ function EmpDashboard(props) {
     });
 
     setEmployeeList(newEmployees);
-
+    updateEmployees(newEmployees);
     closeConfirmDeleteModal();
   };
 
   const onDeleteAllEmployee = () => {
     setEmployeeList([]);
     closeConfirmDeleteAllModal();
+    // props.updateEmployee([]);
+
   };
 
   employeeList.map((el) => {

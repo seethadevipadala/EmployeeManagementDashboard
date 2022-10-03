@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./employeeList.css";
-import pic from "../asserts/pic.webp";
-import editpic from "../asserts/edit_pic.png";
+import pic from "../assets/pic.webp";
+import editpic from "../assets/edit_pic.png";
 const EmployeeList = ({ employeeList, onSelectEmployee, selectedEmpIds }) => {
   // const [checked, setChecked] = useState(false);
   const handleChange = (event, employeeId) => {

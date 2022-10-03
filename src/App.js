@@ -1,18 +1,18 @@
 import "./App.css";
 import React, { useState } from "react";
 import EmpDashboard from "./components/empDashboard";
-import empContext, { employeeData } from "./context/empContext";
+import empContext, { employeeData } from "./context/employeeContext";
 function App() {
-  const [updateEmployeeData, setupdateEmployeeData] = useState(employeeData);
-  const updateEmployee = (employee) => {
+  const [employees, setEmployeeList] = useState(employeeData);
+  const updateEmployees = (employee) => {
     console.log(employee);
-    setupdateEmployeeData(employee);
+    setEmployeeList(employee);
     return employee;
   };
 
   return (
-    <empContext.Provider value={updateEmployeeData}>
-      <EmpDashboard updateEmployee={updateEmployee} />
+    <empContext.Provider value={{employees, updateEmployees}}>
+      <EmpDashboard/>
     </empContext.Provider>
   );
 }
