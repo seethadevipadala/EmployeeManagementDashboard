@@ -5,7 +5,7 @@ import EmployeeList from "./../components/employeeList";
 import employeeContext from "../context/employeeContext";
 import AddEmployeeModal from "./addEmployeeModal";
 function EmpDashboard() {
-  const [confirmdeleteAllModal, setConfirmDeleteAllModal] = useState(false);
+  const [confirmDeleteAllModal, setConfirmDeleteAllModal] = useState(false);
   const openConfirmDeleteAllModal = () => {
     setConfirmDeleteAllModal(true);
   };
@@ -24,21 +24,21 @@ function EmpDashboard() {
   };
   const [open, setOpen] = useState(false);
 
-  const openModal = () => {
+  const openAddEmployeeModal = () => {
     setOpen(true);
   };
-  const closeModal = () => {
+  const closeAddEmployeeModal  = () => {
     setOpen(false);
   };
 
-  let male = 0,
-    female = 0,
-    engineering = 0,
-    backoffice = 0;
+  let maleCount = 0,
+    femaleCount = 0,
+    engineeringCount = 0,
+    backofficeCount = 0;
 
   const { employees, updateEmployees } = useContext(employeeContext);
   const [selectedEmpIds, setSelectedEmpIds] = useState([]);
-  const getEmployeeData = (data) => {
+  const addEmployee = (data) => {
     updateEmployees([...employees, data]);
   };
   const onSelectEmployee = (event, id) => {
@@ -72,19 +72,19 @@ function EmpDashboard() {
     closeConfirmDeleteAllModal();
   };
 
-  employees.map((el) => {
-    if (el.gender === "male") {
-      male++;
-    } else female++;
+  employees.forEach(employee => {
+    if (employee.gender === "male") {
+      maleCount++;
+    } else femaleCount++;
   });
-  employees.map((el) => {
-    if (el.designation === "Engineering") {
-      engineering++;
-    } else backoffice++;
+  employees.forEach((employee) => {
+    if (employee.designation === "Engineering") {
+      engineeringCount++;
+    } else backofficeCount++;
   });
 
   return (
-    <>
+    
       <div className="app">
         <div className="container">
           <div className="button-div">
@@ -92,33 +92,33 @@ function EmpDashboard() {
           </div>
 
           <div className="button-div">
-            <h3 className="male">Male : {male}</h3>
+            <h3 className="male">Male : {maleCount}</h3>
           </div>
 
           <div className="button-div">
-            <h3 className="female">Female : {female}</h3>
+            <h3 className="female">Female : {femaleCount}</h3>
           </div>
 
           <div className="button-div">
-            <h3 className="engineering">Engineering : {engineering}</h3>
+            <h3 className="engineering">Engineering : {engineeringCount}</h3>
           </div>
 
           <div className="button-div">
-            <h3 className="backoffice">BackOffice : {backoffice} </h3>
+            <h3 className="backoffice">BackOffice : {backofficeCount} </h3>
           </div>
         </div>
         <div className="adddiv">
           <div className="add">
-            <button className="addbutton" onClick={openModal}>
+            <button className="addbutton" onClick={openAddEmployeeModal}>
               <Link to="/addemp">Add Employee</Link>
               <Route path="/addemp">
-                {open && (
+                open && (
                   <AddEmployeeModal
                     open={open}
-                    close={closeModal}
-                    getEmployeeData={getEmployeeData}
+                    close={closeAddEmployeeModal }
+                    addEmployee={addEmployee}
                   ></AddEmployeeModal>
-                )}
+                )
               </Route>
             </button>
 
@@ -168,7 +168,7 @@ function EmpDashboard() {
                   </button>
 
                   <>
-                    {confirmdeleteAllModal && (
+                    {confirmDeleteAllModal && (
                       <div className="backshadow">
                         <div className="modal">
                           <h1>Delete All the employees</h1>
@@ -189,18 +189,18 @@ function EmpDashboard() {
                 </div>
               </div>
 
-              {
+              
                 <EmployeeList
                   employeeList={employees}
                   onSelectEmployee={onSelectEmployee}
                   selectedEmpIds={selectedEmpIds}
                 />
-              }
+              
             </div>
           </div>
         </div>
       </div>
-    </>
+  
   );
 }
 

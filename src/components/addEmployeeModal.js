@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./addEmployeeModal.css";
-const AddEmployeeModal = (props) => {
-  const [formData, setFormData] = useState({
+const AddEmployeeModal = ({open,close,addEmployee}) => {
+  let [formData, setFormData] = useState({
     id: "",
     name: "",
     gender: "",
@@ -9,11 +9,21 @@ const AddEmployeeModal = (props) => {
     joiningdate: "",
     designation: "",
   });
-  const handleChangeselect = (e) => {
-    formData.designation = e.target.value;
+  const handleChangeDepartment = (e) => {
+    setFormData((prev) => {
+      return {
+        ...prev,
+        designation:e.target.value
+      }
+    })
   };
-  const handleChangeradio = (e) => {
-    formData.gender = e.target.defaultValue;
+  const handleChangeGender = (e) => {
+    setFormData((prev) => {
+      return {
+        ...prev,
+        gender:e.target.value
+      }
+    })
   };
   const handleChange = (event) => {
     const name = event.target.name;
@@ -29,18 +39,18 @@ const AddEmployeeModal = (props) => {
 
   const submitHandle = (event) => {
     event.preventDefault();
-    props.getEmployeeData(formData);
-    props.close();
+    addEmployee(formData);
+    close();
     return formData;
   };
 
   return (
-    <>
-      {props.open && (
+    
+      open && (
         <div className="backshadow">
           <div className="modal">
             <div className="close-button">
-              <button onClick={props.close}>×</button>
+              <button onClick={close}>×</button>
             </div>
             <form onSubmit={submitHandle}>
               <div className="form-fields">
@@ -56,14 +66,14 @@ const AddEmployeeModal = (props) => {
                     <br />
                     <input
                       type="radio"
-                      onChange={handleChangeradio}
+                      onChange={handleChangeGender}
                       name="gender"
                       value="male"
                     />
                     <label>Male</label>
                     <input
                       type="radio"
-                      onChange={handleChangeradio}
+                      onChange={handleChangeGender}
                       name="gender"
                       value="famale"
                     />
@@ -95,7 +105,7 @@ const AddEmployeeModal = (props) => {
                   <div className="joiningdate">
                     <label>Designation:</label>
                     <br />
-                    <select name="designation" onChange={handleChangeselect}>
+                    <select name="designation" onChange={handleChangeDepartment}>
                       <option value="Engineering" name="designation">
                         Engnnering
                       </option>
@@ -128,8 +138,8 @@ const AddEmployeeModal = (props) => {
             </form>
           </div>
         </div>
-      )}
-    </>
+      )
+  
   );
 };
 export default AddEmployeeModal;
