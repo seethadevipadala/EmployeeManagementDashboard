@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./employeeList.css";
 import pic from "../assets/pic.webp";
 import editpic from "../assets/edit_pic.png";
+import { Link } from "react-router-dom";
 
-const EmployeeList = ({ employeeList, onSelectEmployee, selectedEmpIds }) => {
+const EmployeeList = ({
+  employeeList,
+  onSelectEmployee,
+  selectedEmpIds,
+}) => {
   const handleChange = (event, employeeId) => {
     onSelectEmployee(event, employeeId);
   };
-
   return (
     <ul>
       {employeeList.length > 0 ? (
@@ -33,7 +37,14 @@ const EmployeeList = ({ employeeList, onSelectEmployee, selectedEmpIds }) => {
             </div>
 
             <div className="edit">
-              <img className="editimg" src={editpic} alt="pic" />
+              <Link
+                to={{
+                  pathname: `/editemp/${_emp.id}`,
+                  state: { id: _emp.id },
+                }}
+              >
+                <img className="editimg" src={editpic} alt="pic" />
+              </Link>
             </div>
           </div>
         ))

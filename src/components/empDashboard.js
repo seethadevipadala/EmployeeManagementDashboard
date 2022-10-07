@@ -38,9 +38,7 @@ function EmpDashboard() {
 
   const { employees, updateEmployees } = useContext(employeeContext);
   const [selectedEmpIds, setSelectedEmpIds] = useState([]);
-  const addEmployee = (data) => {
-    updateEmployees([...employees, data]);
-  };
+
   const onSelectEmployee = (event, id) => {
     const isChecked = selectedEmpIds.includes(id);
     if (!isChecked) {
@@ -56,13 +54,6 @@ function EmpDashboard() {
   };
 
   const onDeleteEmployee = () => {
-    // const newEmployees = employees.filter((employee) => {
-    //   return !selectedEmpIds.some((selectedId) => {
-    //     if (selectedId === employee.id) {
-    //       return employee;
-    //     }
-    //   });
-    // });
     const newEmployees = employees.filter((employee) => {
       return selectedEmpIds.every((selectedId) => selectedId !== employee.id);
     });
@@ -111,18 +102,9 @@ function EmpDashboard() {
       </div>
       <div className="adddiv">
         <div className="add">
-          <button className="addbutton" onClick={openAddEmployeeModal}>
-            <Link to="/addemp">Add Employee</Link>
-            <Route path="/addemp">
-              open && (
-              <AddEmployeeModal
-                open={open}
-                close={closeAddEmployeeModal}
-                addEmployee={addEmployee}
-              ></AddEmployeeModal>
-              )
-            </Route>
-          </button>
+          <Link to="/addemp">
+            <button className="addbutton">Add Employee</button>
+          </Link>
 
           <div className="emplist">
             <div className="deldiv">

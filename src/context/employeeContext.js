@@ -10,6 +10,7 @@ export const employeeData = [
     phoneNumber: 4343421,
     joiningDate: 21 / 32 / 45,
     designation: "Engineering",
+    email: "abc@email.com",
   },
   {
     id: 1,
@@ -20,6 +21,7 @@ export const employeeData = [
 
     joiningDate: 21 / 32 / 45,
     designation: "Engineering",
+    email: "swathi@email.com",
   },
   {
     id: 2,
@@ -30,6 +32,7 @@ export const employeeData = [
 
     joiningDate: 21 / 32 / 45,
     designation: "Engineering",
+    email: "gita@email.com",
   },
   {
     id: 3,
@@ -40,6 +43,7 @@ export const employeeData = [
 
     joiningDate: 21 / 32 / 45,
     designation: "Backoffice",
+    email: "pavani@email.com",
   },
   {
     id: 4,
@@ -50,6 +54,7 @@ export const employeeData = [
 
     joiningDate: 21 / 32 / 45,
     designation: "Engineering",
+    email: "joseph@email.com",
   },
 
   {
@@ -62,5 +67,6 @@ export const employeeData = [
 
     joiningDate: 21 / 32 / 45,
     designation: "Backoffice",
+    email: "karthik@email.com",
   },
 ];
